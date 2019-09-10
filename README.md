@@ -21,13 +21,13 @@ For any questions, feel free to email angad@hack4impact.org.
 
 ## Setup
 
-First, fork this repository. The fork button on your top right. What this does is copies this repository over to your account. Now you should have a repository with the name `<yourusername>/takehome-sp19`.
+First, fork this repository. The fork button on your top right. What this does is copies this repository over to your account. Now you should have a repository with the name `<yourusername>/takehome-fa19`.
 
 Then, clone this repository (click the green button saying "Clone or Download", choose http, and copy and paste it the location `<url>` ) and go into it:
 
 ```
 $ git clone <url>
-$ cd takehome-sp19
+$ cd takehome-fa19
 ```
 
 Now open a second terminal and navigate to this cloned repository. 
@@ -45,33 +45,36 @@ The following exercise will have you learn and apply some React and Flask to bui
 ### Part 1 - Already Done
 
 ```
-GET /shows
+GET /contacts
 ```
 
-This should return a properly formatted JSON response that contains a list of all the `show`s in the mockdb. If you call this endpoint immediately after starting the server, you should get this response in Postman:
+This should return a properly formatted JSON response that contains a list of all the `contacts` in the mockdb. If you call this endpoint immediately after starting the server, you should get this response in Postman:
 
 ```
 {
   "code": 200,
   "message": "",
   "result": {
-    "shows": [
-      {
-        "id": 1, 
-        "name": "Game of Thrones", 
-        "episodes_seen": 0
-      },
-      {
-        "id": 2, 
-        "name": "Naruto", 
-        "episodes_seen": 220
-      },
-      {
-        "id": 3, 
-        "name": "Black Mirror", 
-        "episodes_seen": 3
-      }
-    ]
+      "contacts": [
+          {
+              "hobby": "dirty-ing",
+              "id": 1,
+              "name": "Angad",
+              "nickname": "greg"
+          },
+          {
+              "hobby": "weeb",
+              "id": 2,
+              "name": "Roy",
+              "nickname": "uwu"
+          },
+          {
+              "hobby": "losing money with options trading",
+              "id": 3,
+              "name": "Daniel",
+              "nickname": "oppa"
+          }
+      ]
   },
   "success": true
 }
@@ -82,19 +85,20 @@ This should return a properly formatted JSON response that contains a list of al
 Define the endpoint:
 
 ```
-GET /shows/<id>
+GET /contacts/<id>
 ```
 
-This should retrieve a single show that has the `id` provided from the request. For example, `GET /shows/1` would return:
+This should retrieve a single contact that has the `id` provided from the request. For example, `GET /contacts/1` would return:
 
 ```
 {
   "code": 200,
   "message": "",
   "result": {
-    "id": 1, 
-    "name": "Game of Thrones", 
-    "episodes_seen": 0
+      "hobby": "dirty-ing",
+      "id": 1,
+      "name": "Angad",
+      "nickname": "greg"
   },
   "success": true
 }
@@ -106,35 +110,31 @@ If there doesn't exist a show with the provided `id`, return a `404` with a desc
 
 ## Part 3
 
-Extend the first `/shows` enpoint by adding the ability to query the shows based on the team they are on. You should _not_ use a url parameter like you did in Part 2. Instead, use a [query string](https://en.wikipedia.org/wiki/Query_string).
+Extend the first `/contacts` enpoint by adding the ability to query contacts based on their hobby. You should _not_ use a url parameter like you did in Part 2. Instead, use a [query string](https://en.wikipedia.org/wiki/Query_string).
 
-If `minEpisodes` is provided as a query string parameter, only return the shows which have that number or more episodes seen. If there are no such shows.
+If `hobby` is provided as a query string parameter, only return the contacts which have that same hobby. If there are no such contacts, return a `404` with a descriptive `message`.
 
-For this exercise, you can ignore any query string parameters other than `minEpisodes` and you may assume that the provided parameter will be an integer represented as a string of digits.
+For this exercise, you can ignore any query string parameters other than `hobby` and you may assume that the provided parameter will be a string.
 
 In Postman, you can supply query string parameters writing the query string into your request url or by hitting the `Params` button next to `Send`. Doing so will automatically fill in the request url.
 
 The following should happen
 
 ```
-GET /shows?minEpisodes=3
+GET /contacts?hobby=weeb
 
 {
   "code": 200,
   "message": "",
   "result": {
-    "shows": [
-      {
-        "id": 2, 
-        "name": "Naruto", 
-        "episodes_seen": 220
-      },
-      {
-        "id": 3, 
-        "name": "Black Mirror", 
-        "episodes_seen": 3
-      }
-    ]
+      "contacts": [
+          {
+              "hobby": "weeb",
+              "id": 2,
+              "name": "Roy",
+              "nickname": "uwu"
+          }
+      ]
   },
   "success": true
 }
@@ -147,10 +147,10 @@ GET /shows?minEpisodes=3
 Define the endpoint:
 
 ```
-POST /shows
+POST /contacts
 ```
 
-This endpoint should create a new show. Each request should also send a `name`, and `episodes_seen` parameter in the request's `body`. The `id` property will be created automatically in the mockdb.
+This endpoint should create a new contact. Each request should also send a `name`, `nickname`, and `hobby` parameter in the request's `body`. The `id` property will be created automatically in the mockdb.
 
 A successful request should return a status code of `201` and return the newly created show (in the same format as Part 2).
 
@@ -164,30 +164,30 @@ This is how you can send `body` parameters from Postman. Make sure you don't mis
 Define the endpoint:
 
 ```
-PUT /shows/<id>
+PUT /contacts/<id>
 ```
 
-Here we need to provide a show's `id` since we need to specify which show to update. The `body` for this request should contain the same attributes as the `POST` request from Part 4.
+Here we need to provide a contact's `id` since we need to specify which contact to update. The `body` for this request should contain the same attributes as the `POST` request from Part 4.
 
-However, the difference with this `PUT` request is that only values with the provided keys (`name`, `episodes_seen`) will be updated, and any parameters not provided will not change the corresponding attribute in the show being updated.
+However, the difference with this `PUT` request is that only values with the provided keys (`name`, `hobby`) will be updated, and any parameters not provided will not change the corresponding attribute in the contact being updated.
 
-You do not need to account for `body` parameters provided that aren't `name`, or `episodes_seen`.
+You do not need to account for `body` parameters provided that aren't `name`, or `hobby`.
 
-If the show with the provided `id` cannot be found, return a `404` and a useful `message`.
+If the contact with the provided `id` cannot be found, return a `404` and a useful `message`.
 
-If you do find the show, return it in the same way you did in Part 4 with the updated values.
+If you do find the contact, return it in the same way you did in Part 4 with the updated values.
 
 ## Part 6 - Already Done
 
 Define the endpoint:
 
 ```
-DELETE /shows/<id>
+DELETE /contacts/<id>
 ```
 
-This will delete the show with the associated `id`. Return a useful `message`, although nothing needs to be specified in the response's `result`.
+This will delete the contact with the associated `id`. Return a useful `message`, although nothing needs to be specified in the response's `result`.
 
-If the show with the provided `id` cannot be found, return a `404` and a useful `message`.
+If the contact with the provided `id` cannot be found, return a `404` and a useful `message`.
 
 ## React
 
