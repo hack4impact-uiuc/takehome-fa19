@@ -211,18 +211,18 @@ Tasks:
 Goal: Use nested components and props.
 
 Tasks:
-* Open the empty `Show` component which takes a shows `id`, `name`, and `episodes_seen`.
-* Display the show name
+* Open the empty `Contact` component which takes a contact's `id`, `name`, `nickname`, and `hobby`.
+* Display the Contact name
 * Modify the `Counter` component to take the initial count as a prop, and use this value for `count` in the initial state.
-* Display a `Counter` (Look how we nested `Instructions` into `App`) and pass the number of episodes watched as prop to `Counter`
-* To check that this works, just look at your running app, you should see 3 show names, each of which should have a counter next to it.
+* Display a `Counter` (Look how we nested `Instructions` into `App`) and pass the number of contacts as prop to `Counter`
+* To check that this works, just look at your running app, you should see 3 contacts.
 
 ### Part 4 - Already Done
 Goal: Get familiar with rendering lists and javascript array functions
 
 Tasks:
 * In the `App` component, create an initial state with a list of shows where each show has a name and a number of episodes seen. Use this [data](backend/mockdb/dummy_data.py)
-* Display each show by passing each show's attributes as props to a `Show` component
+* Display each contact by passing each show's attributes as props to a `Contact` component
 * Do this without using `for` or `while` loops
 * Very useful videos to watch:
  * [Functional Programming Intro](https://www.youtube.com/watch?v=BMUiFMZr7vk&index=1&list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84) - just the first two videos are enough, although there's a lot to learn from the rest of the playlist and his other videos! (highly recommend subscribing)
@@ -232,5 +232,5 @@ Tasks:
 Goal: Get familiar with user input
 
 Tasks:
-* In `App.js`, make an input and a submit button that adds a new show to the state (set the new show's `id` to the next integer, and the `episodes_seen` to 0)
+* In `App.js`, make an input and a submit button that adds a new contact to the state (set the new contact's `id` to the next integer, and you can be creative with the remaining fields. Adding a new contact should also increment the counter.
 * Note: If your button refreshes the whole page, throw in a button type: `<button type="button" ...`
