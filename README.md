@@ -15,9 +15,9 @@ Reading the following will help you get a sense of the big picture when it comes
 
 This project will be broken down into multiple parts. After you finish this project, you must submit it by following the instructions below.
 
-*This exercise is due before this Sunday, January 27th at 11:59PM. If you have spent over 10 hours total, submit what you have!*
+*This exercise is due before this Sunday, September 15th at 11:59PM. If you have spent over 10 hours total, submit what you have!*
 
-For any questions, feel free to email angad@hack4impact.org.
+For any questions, feel free to email rchiu@hack4impact.org or angad@hack4impact.org.
 
 ## Setup
 
@@ -38,7 +38,7 @@ Postman will be useful for testing your backend as you go, you can install [here
 
 # Exercise 
 
-The following exercise will have you learn and apply some React and Flask to build a tool to keep track of your progress in multiple TV shows.
+The following exercise will have you learn and apply some React and Flask to build a tool to keep track of the people that you've met through making contacts.
 
 ## Flask
 
