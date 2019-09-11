@@ -213,16 +213,14 @@ Goal: Use nested components and props.
 Tasks:
 * Open the empty `Contact` component which takes a contact's `id`, `name`, `nickname`, and `hobby`.
 * Display the Contact name
-* Modify the `Counter` component to take the initial count as a prop, and use this value for `count` in the initial state.
-* Display a `Counter` (Look how we nested `Instructions` into `App`) and pass the number of contacts as prop to `Counter`
 * To check that this works, just look at your running app, you should see 3 contacts.
 
 ### Part 4 - Already Done
 Goal: Get familiar with rendering lists and javascript array functions
 
 Tasks:
-* In the `App` component, create an initial state with a list of shows where each show has a name and a number of episodes seen. Use this [data](backend/mockdb/dummy_data.py)
-* Display each contact by passing each show's attributes as props to a `Contact` component
+* In the `App` component, create an initial state with a list of contacts where each contact has a name, nickname, and a hobby. Use this [data](backend/mockdb/dummy_data.py)
+* Display each contact by passing each contacts's attributes as props to a `Contact` component
 * Do this without using `for` or `while` loops
 * Very useful videos to watch:
  * [Functional Programming Intro](https://www.youtube.com/watch?v=BMUiFMZr7vk&index=1&list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84) - just the first two videos are enough, although there's a lot to learn from the rest of the playlist and his other videos! (highly recommend subscribing)
